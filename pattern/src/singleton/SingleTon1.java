@@ -2,7 +2,7 @@ package singleton;
 
 /**
  * <p>
- *     懒汉式:延迟加载，即当需要用到此单一实例的时候，才去初始化此单一实例
+ *     饿汉式:应用中尚未需要用到此单一实例的时候即先实例化
  * </p>
  *
  * @author huangyicao 2017/11/7 17:01
@@ -10,9 +10,9 @@ package singleton;
 public class SingleTon1 {
 
     /**
-     * 静态对象
+     * 静态实例对象，直接初始化
      */
-    private static SingleTon1 singleTon;
+    private static SingleTon1 singleTon = new SingleTon1();
 
     /**
      * 私有化构造函数
@@ -24,9 +24,6 @@ public class SingleTon1 {
      * 静态public方法，向整个应用提供单例获取方式
       */
     public static SingleTon1 getInstance(){
-        if(singleTon == null){
-            singleTon = new SingleTon1();
-        }
         return singleTon;
     }
 }

@@ -1,20 +1,49 @@
-package singleton; /**
- * @ProjectName: 海豚 V 1.0
- * @Copyright: 2017 HangZhou Hikvision System Technology Co., Ltd. All Right Reserved.
- * @address: http://www.hikvision.com
- * @date: 2017年7月20日 上午10:38:37
- * @Description: 本内容仅限于杭州海康威视数字技术系统公司内部使用，禁止转发.
- */
+package singleton;
 
 /**
- * <p></p>
+ * <p>
+ *     懒汉式:延迟加载，即当第一次用到此单一实例的时候，才去初始化此单一实例
+ * </p>
  *
- * @param
  * @author huangyicao 2017/11/7 17:01
- * @return
- * @modificationHistory=========================逻辑或功能性重大变更记录
- * @modify by user: {修改人} 2017/11/7
- * @modify by reason:{原因}
  */
 public class SingleTon {
+
+    /**
+     * 静态对象
+     */
+    private static SingleTon singleTon;
+
+    // 线程安全的写法，静态实例变量加上volatile
+//    private static volatile SingleTon instance;
+
+    /**
+     * 私有化构造函数
+     */
+    private SingleTon(){
+
+    }
+    /**
+     * 静态public方法，向整个应用提供单例获取方式
+      */
+    public static SingleTon getInstance(){
+        if(singleTon == null){
+            singleTon = new SingleTon();
+        }
+        return singleTon;
+    }
+
+
+
+    // 线程安全的写法，双重检查锁
+//    public static SingleTon getInstance() {
+//        if (instance == null) {
+//            synchronized(Singleton.class){
+//                if(instance == null){
+//                    instance = new SingleTon();
+//                }
+//            }
+//        }
+//        return instance;
+//    }
 }
